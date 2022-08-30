@@ -1,0 +1,55 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/nest-experiment/src",
+  "monorepo": true,
+  "root": "apps/nest-experiment",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/nest-experiment/tsconfig.app.json"
+  },
+  "projects": {
+    "nest-experiment": {
+      "type": "application",
+      "root": "apps/nest-experiment",
+      "entryFile": "main",
+      "sourceRoot": "apps/nest-experiment/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nest-experiment/tsconfig.app.json"
+      },
+      "generateOptions": {
+        "spec": {
+          "service": false
+        }
+      },
+      "assets": [
+        "**/*.graphql"
+      ],
+      "watchAssets": true
+    },
+    "sse": {
+      "type": "application",
+      "root": "apps/sse",
+      "entryFile": "main",
+      "sourceRoot": "apps/sse/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sse/tsconfig.app.json"
+      },
+      "assets": [
+        {
+          "include": "**/*.graphql",
+          "exclude": "**/omitted.graphql",
+          "watchAssets": true
+        }
+      ]
+    },
+    "my-library": {
+      "type": "library",
+      "root": "libs/my-library",
+      "entryFile": "index",
+      "sourceRoot": "libs/my-library/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/my-library/tsconfig.lib.json"
+      }
+    }
+  }
+}
